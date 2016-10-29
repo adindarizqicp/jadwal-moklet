@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.astuetz.PagerSlidingTabStrip;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Context mContext = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
+
+
+    }
+
+    public Context getContext() {
+        return mContext;
     }
 
 }

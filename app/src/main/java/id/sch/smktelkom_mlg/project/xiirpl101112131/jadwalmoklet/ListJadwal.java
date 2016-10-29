@@ -1,18 +1,6 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
+/*
 public class ListJadwal extends AppCompatActivity {
     ListView list_view;
     ArrayAdapter<String> adapter;
@@ -82,3 +70,4 @@ public class ListJadwal extends AppCompatActivity {
         });
     }
 }
+*/

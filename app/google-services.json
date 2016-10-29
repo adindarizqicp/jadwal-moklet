@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "529516521548",
+    "firebase_url": "https://jadwal-moklet.firebaseio.com",
+    "project_id": "jadwal-moklet",
+    "storage_bucket": "jadwal-moklet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529516521548:android:f02440b8f95bfa8e",
+        "android_client_info": {
+          "package_name": "id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529516521548-9v252p3rc7coq548piroku32c92h6k2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": ""
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
