@@ -19,6 +19,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
         return Page_Fragment.newInstance(position + 1);
     }
 

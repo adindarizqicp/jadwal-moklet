@@ -8,6 +8,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="id.sch.smktelkom_mlg.learn.cobaslider.Page_Fragment">
+    tools:context="id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.Page_Fragment">
+
+    <!--<include-->
+    <!--layout="@layout/activity_list_jadwal" />-->
 
 </RelativeLayout>

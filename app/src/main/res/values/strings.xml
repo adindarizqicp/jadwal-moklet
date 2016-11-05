@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">JadwalMoklet</string>
+    <string-array name="jadwal_array">
+        <item>Math</item>
+        <item>Bahasa</item>
+        <item>Jawa</item>
+        <item>Indonesia</item>
+        <item>Inggris</item>
+        <item>Agama</item>
+        <item>PKN</item>
+        <item>PKN</item>
+        <item>PKN</item>
+        <item>PKN</item>
+        <item>PKN</item>
+        <item>PKN</item>
+    </string-array>
 </resources>
