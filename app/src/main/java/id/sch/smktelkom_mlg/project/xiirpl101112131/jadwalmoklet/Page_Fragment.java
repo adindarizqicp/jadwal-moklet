@@ -18,19 +18,20 @@ public class Page_Fragment extends ListFragment {
     ArrayAdapter<String> adapter;
     private int mPage;
 
+
     public static Page_Fragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
         Page_Fragment fragment = new Page_Fragment();
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
-
 
     }
 
@@ -59,7 +60,7 @@ public class Page_Fragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_list_jadwal, container, false);
+        view = inflater.inflate(R.layout.activity_list_jadwal, container, false);
         //TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         //tvTitle.setText("Fragment #" + mPage);
 
@@ -68,25 +69,34 @@ public class Page_Fragment extends ListFragment {
         return view;
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        final JadwalDB jadwal = new JadwalDB(view.getContext());
+
+        view.findViewById(R.id.buttonUpdate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                jadwal.getSenin();
+            }
+        });
+
         if (mPage == 1) {
             //muncul jadwal hari senin
-            JadwalDB jadwal = new JadwalDB();
-            jadwal.getSenin();
-            adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.getList());
+
+            adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.DBSeninToArray());
             adapter.notifyDataSetChanged();
             getListView().setAdapter(adapter);
             //error("Mau kesini nggk?");
         } else if (mPage == 2) {
-            JadwalDB jadwal = new JadwalDB();
+            /*JadwalDB jadwal = new JadwalDB();
             jadwal.getSelasa();
             adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.getList());
             adapter.notifyDataSetChanged();
             getListView().setAdapter(adapter);
-            //error("hah?!");
+            //error("hah?!");*/
         }
     }
 
