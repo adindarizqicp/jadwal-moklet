@@ -21,6 +21,7 @@ import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.SQLite.SQLContr
  */
 
 public class JadwalDB extends AppCompatActivity {
+    public String kelas = "XIIRPL";
     FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
     DatabaseReference myRef = fireDB.getReference("XIIRPL1");
     DatabaseReference myRef_G = fireDB.getReference("Guru");
@@ -30,6 +31,8 @@ public class JadwalDB extends AppCompatActivity {
     Context myContext;
     String[] myJ = new String[12];
     String[] myJ_C = new String[12];
+    String[] myJ_G = new String[12];
+    String notFound = "-";
     private SQLController dbController;
 
     public JadwalDB(Context c) {
@@ -60,38 +63,18 @@ public class JadwalDB extends AppCompatActivity {
 
             }
 
-            /*Cursor cursor = dbController.fetch("Senin001");
-            if(cursor != null){
-            ArrayList<String> myList = new ArrayList<String>();
-            //Log.d("&&_out", "DBSeninToArray: " + cursor.getColumnCount());
-                Log.d("&&_if", "DBSeninToArray: " + cursor.getColumnCount());
-                    Log.d("&&_bef_for", "DBSeninToArray: " + cursor.getColumnCount());
-                    for (int i = 1; i < cursor.getColumnCount(); i++){
-                        Log.d("&&_for", "DBSeninToArray: " + cursor.getString(i));
-                        myList.add(cursor.getString(i));
-                    }
-            }*/
-
         cursor.close();
         myList.add("muncul lah nak");
         //maplist.add("Loo");
             return maplist;
     }
 
-    public void getSenin() {
+    public void getJadwalPelajaran(String hari, final String record) {
         Log.d("&&", "GET SENIN");
-        myRef.child("Senin").addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.child(hari).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) { //AMBIL DATA DARI FIREBASE------------
-                //DataSnapshot mapelSnapshot = dataSnapshot.child("Senin");
                 Log.d("&&", "GET SENIN 2");
-                try { //HAPUS RECORD YG SDH ADA
-                    dbController.delete("Senin001");
-                } catch (SQLException e) {
-                    System.out.println("&& error " + e.toString());
-                }
-
-                //for (DataSnapshot myMapelSnapshot: mapelSnapshot.getChildren()) {
                 MataPelajaran mataPelajaran = dataSnapshot.getValue(MataPelajaran.class);
                 myJ[0] = mataPelajaran.getJ1();
                 myJ[1] = mataPelajaran.getJ2();
@@ -105,7 +88,6 @@ public class JadwalDB extends AppCompatActivity {
                 myJ[9] = mataPelajaran.getJ10();
                 myJ[10] = mataPelajaran.getJ11();
                 myJ[11] = mataPelajaran.getJ12();
-                //}
 
                 Log.d("&&", "myJ.length: " + myJ.length);
 
@@ -115,6 +97,7 @@ public class JadwalDB extends AppCompatActivity {
                     Log.d("&&", "onDataChange: " + i + " ~ " + myJ[i]);
                     //convert();
                 }
+                input(record, myJ);
                 convert();
             }
 
@@ -124,55 +107,7 @@ public class JadwalDB extends AppCompatActivity {
             }
 
         });
-
-
-                //INSERT KE SQLITE---------------------------
-                try {
-                    /*dbController.insert(
-                            "Senin001",
-                            myJ_C[0],
-                            myJ_C[1],
-                            myJ_C[2],
-                            myJ_C[3],
-                            myJ_C[4],
-                            myJ_C[5],
-                            myJ_C[6],
-                            myJ_C[7],
-                            myJ_C[8],
-                            myJ_C[9],
-                            myJ_C[10],
-                            myJ_C[11]
-                    );*/
-
-                    message("Info", "Berhasil memperbarui jadwal");
-
-                } catch (Exception e) {
-                    System.out.println("BEH! " + e.toString());
-                }
         Log.d("&&", "GET SENIN_END");
-        /*final String myKelas = "XIIRPL";
-        for(int i=0; i<myJ.length; i++){
-            try {
-                final int finalI = i;
-                myRef_G.child(myJ[i]).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
-                        Log.d("&&", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[finalI] = mataPelajaran_c.getJadwal_C(myKelas);
-                        //myJ_C[i] = dataSnapshot.child("Guru/" + con + "/" + myKelas).getValue().toString();
-                        if(myJ_C[finalI] == null) myJ_C[finalI] = " - ";
-                        Log.d("&&", "onDataChange myJ_C : " + finalI + " ~ " + myJ_C[finalI]);
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                Log.d("&&", "getSenin myJ_C OUT : " + finalI + " ~ " + myJ_C[finalI]);
-            } catch (Exception e) {
-                System.out.println("BEH! " + e.toString());
-            }}*/
     }
 
     public void convert() {
@@ -184,10 +119,13 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[0] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[0] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[0] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 1: " + myJ_C[0]);
+                        Log.d("&&_gendeng", "onDataChange myJ_C 1: " + myJ_G[0]);
                     } else {
-                        myJ_C[0] = "Data tidak ditemukan";
+                        myJ_C[0] = notFound;
+                        myJ_G[0] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 1: " + myJ_C[0]);
                     }
                 }
@@ -206,10 +144,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[1] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[1] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[1] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 2: " + myJ_C[1]);
                     } else {
                         myJ_C[1] = "Data tidak ditemukan";
+                        myJ_G[1] = "Data tidak ditemukan";
                         Log.d("&&_gendeng", "onDataChange myJ_C 2: " + myJ_C[1]);
                     }
                 }
@@ -228,10 +168,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[2] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[2] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[2] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 3: " + myJ_C[2]);
                     } else {
-                        myJ_C[2] = "Data tidak ditemukan";
+                        myJ_C[2] = notFound;
+                        myJ_G[2] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 3: " + myJ_C[2]);
                     }
                 }
@@ -250,10 +192,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[3] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[3] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[3] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 4: " + myJ_C[3]);
                     } else {
-                        myJ_C[3] = "Data tidak ditemukan";
+                        myJ_C[3] = notFound;
+                        myJ_G[3] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 4: " + myJ_C[3]);
                     }
                 }
@@ -272,10 +216,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[4] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[4] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[4] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 5: " + myJ_C[4]);
                     } else {
-                        myJ_C[4] = "Data tidak ditemukan";
+                        myJ_C[4] = notFound;
+                        myJ_G[4] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 5: " + myJ_C[4]);
                     }
                 }
@@ -294,10 +240,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[5] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[5] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[5] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 6: " + myJ_C[5]);
                     } else {
-                        myJ_C[5] = "Data tidak ditemukan";
+                        myJ_C[5] = notFound;
+                        myJ_G[5] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 6: " + myJ_C[5]);
                     }
                 }
@@ -316,10 +264,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[6] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[6] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[6] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 7: " + myJ_C[6]);
                     } else {
-                        myJ_C[6] = "Data tidak ditemukan";
+                        myJ_C[6] = notFound;
+                        myJ_G[6] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 7: " + myJ_C[6]);
                     }
                 }
@@ -338,10 +288,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[7] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[7] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[7] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 8: " + myJ_C[7]);
                     } else {
-                        myJ_C[7] = "Data tidak ditemukan";
+                        myJ_C[7] = notFound;
+                        myJ_G[7] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 8: " + myJ_C[7]);
                     }
                 }
@@ -360,10 +312,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[8] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[8] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[8] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 9: " + myJ_C[8]);
                     } else {
-                        myJ_C[8] = "Data tidak ditemukan";
+                        myJ_C[8] = notFound;
+                        myJ_G[8] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 9: " + myJ_C[8]);
                     }
                 }
@@ -382,10 +336,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[9] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[9] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[9] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 10: " + myJ_C[9]);
                     } else {
-                        myJ_C[9] = "Data tidak ditemukan";
+                        myJ_C[9] = notFound;
+                        myJ_G[9] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 10: " + myJ_C[9]);
                     }
                 }
@@ -404,10 +360,12 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[10] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[10] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[10] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 11: " + myJ_C[10]);
                     } else {
-                        myJ_C[10] = "Data tidak ditemukan";
+                        myJ_C[10] = notFound;
+                        myJ_G[10] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 11: " + myJ_C[10]);
                     }
                 }
@@ -426,12 +384,16 @@ public class JadwalDB extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         MataPelajaran_C mataPelajaran_c = dataSnapshot.getValue(MataPelajaran_C.class);
                         Log.d("&&_gendeng", "onDataChange class nya : " + mataPelajaran_c);
-                        myJ_C[11] = mataPelajaran_c.getJadwal_C("XIIRPL");
+                        myJ_C[11] = mataPelajaran_c.getJadwal_C(kelas);
+                        myJ_G[11] = mataPelajaran_c.getNama();
                         Log.d("&&_gendeng", "onDataChange myJ_C 12: " + myJ_C[11]);
                     } else {
-                        myJ_C[11] = "Data tidak ditemukan";
+                        myJ_C[11] = notFound;
+                        myJ_G[11] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 12: " + myJ_C[11]);
                     }
+                    input("Senin001", myJ_C);
+                    input("Senin002", myJ_G);
                 }
 
                 @Override
@@ -439,6 +401,37 @@ public class JadwalDB extends AppCompatActivity {
 
                 }
             });
+        }
+    }
+
+    public void input(String tbl, String[] col) {
+        try { //HAPUS RECORD YG SDH ADA
+            dbController.delete(tbl);
+        } catch (SQLException e) {
+            System.out.println("&& error " + e.toString());
+        }
+        //INSERT KE SQLITE---------------------------
+        try {
+            dbController.insert(
+                    tbl,
+                    col[0],
+                    col[1],
+                    col[2],
+                    col[3],
+                    col[4],
+                    col[5],
+                    col[6],
+                    col[7],
+                    col[8],
+                    col[9],
+                    col[10],
+                    col[11]
+            );
+
+            message("Info", "Berhasil memperbarui jadwal");
+
+        } catch (Exception e) {
+            System.out.println("BEH! " + e.toString());
         }
     }
 

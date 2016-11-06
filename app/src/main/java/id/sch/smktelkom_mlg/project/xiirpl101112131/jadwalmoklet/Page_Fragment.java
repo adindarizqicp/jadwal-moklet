@@ -78,8 +78,7 @@ public class Page_Fragment extends ListFragment {
         view.findViewById(R.id.buttonUpdate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                jadwal.getSenin();
-                jadwal.convert();
+                jadwal.getJadwalPelajaran("Senin", "Senin000");
             }
         });
 
