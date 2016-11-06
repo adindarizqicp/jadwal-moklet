@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,8 @@ public class Page_Fragment extends ListFragment {
     public static final String ARG_PAGE = "ARG_PAGE";
 
     View view;
-    ArrayAdapter<String> adapter;
+    JadwalDB jadwal;
     private int mPage;
-
 
     public static Page_Fragment newInstance(int page) {
         Bundle args = new Bundle();
@@ -69,26 +69,31 @@ public class Page_Fragment extends ListFragment {
         return view;
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final JadwalDB jadwal = new JadwalDB(view.getContext());
+        jadwal = new JadwalDB(view.getContext());
 
         view.findViewById(R.id.buttonUpdate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 jadwal.getSenin();
+                jadwal.convert();
             }
         });
 
         if (mPage == 1) {
             //muncul jadwal hari senin
 
-            adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.DBSeninToArray());
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.DBSeninToArray());
             adapter.notifyDataSetChanged();
-            getListView().setAdapter(adapter);
+            try {
+                getListView().setAdapter(adapter);
+            } catch (Exception e) {
+                Log.e("INI LO", "onActivityCreated: " + e.toString());
+            }
+
             //error("Mau kesini nggk?");
         } else if (mPage == 2) {
             /*JadwalDB jadwal = new JadwalDB();
@@ -96,7 +101,7 @@ public class Page_Fragment extends ListFragment {
             adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.getList());
             adapter.notifyDataSetChanged();
             getListView().setAdapter(adapter);
-            //error("hah?!");*/
+            //message("hah?!");*/
         }
     }
 

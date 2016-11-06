@@ -58,7 +58,7 @@ public class SQLController {
         database.insert(DBhelper.TABLE_NAME, null, contentValue);
     }
 
-    public Cursor fetch() {
+    public Cursor fetch(String hari) {
         String[] columns = new String[]{
                 DBhelper.HARI,
                 DBhelper.JP_01,
@@ -73,8 +73,10 @@ public class SQLController {
                 DBhelper.JP_10,
                 DBhelper.JP_11,
                 DBhelper.JP_12};
-        Cursor cursor = database.query(DBhelper.TABLE_NAME, columns, null,
-                null, null, null, null);
+        String where = DBhelper.HARI + " =?";
+        String[] whereArgs = new String[]{hari + ""};
+        Cursor cursor = database.query(DBhelper.TABLE_NAME, columns, where,
+                whereArgs, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
