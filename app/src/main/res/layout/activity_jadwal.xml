@@ -11,6 +11,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="id.sch.smktelkom_mlg.learn.layoutjadwal.MainActivity">
 
+    <Button
+        android:id="@+id/buttonHitung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hitung" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
@@ -21,15 +27,15 @@
         android:src="@drawable/logo"
         app:srcCompat="@drawable/logo" />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <ImageButton
+        android:id="@+id/imageButtonSiswa"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/imageView"
         android:layout_marginTop="66dp"
-        android:src="@drawable/murid" />
+        android:src="@drawable/guru" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -37,9 +43,9 @@
         android:layout_height="120dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignTop="@+id/imageButtonSiswa"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/guru" />
+        android:src="@drawable/murid" />
 
     <TextView
         android:id="@+id/textView"
