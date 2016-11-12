@@ -67,15 +67,6 @@
         android:text="Kelas"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Spinner
-        android:id="@+id/spinnerKelas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_toEndOf="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:entries="@array/kelas" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -83,6 +74,7 @@
         android:layout_above="@+id/textViewExit"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="53dp"
+        android:onClick="Save"
         android:text="Buat Jadwal" />
 
     <TextView
@@ -94,5 +86,14 @@
         android:layout_toRightOf="@+id/spinnerKelas"
         android:text="Keluar"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Spinner
+        android:id="@+id/spinnerKelas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:entries="@array/kelas" />
 
 </RelativeLayout>

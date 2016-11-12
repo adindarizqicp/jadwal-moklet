@@ -11,6 +11,7 @@ import android.view.View;
 
 public class activity_jadwal extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class activity_jadwal extends AppCompatActivity {
     }
 
     private void goHasil() {
-        Intent intent = new Intent(activity_jadwal.this, MainActivity.class);
+        Intent intent = new Intent(activity_jadwal.this, InputActivity.class);
         startActivity(intent);
     }
 }
