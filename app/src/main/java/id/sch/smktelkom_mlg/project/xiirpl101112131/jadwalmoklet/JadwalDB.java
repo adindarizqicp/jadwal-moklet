@@ -44,17 +44,17 @@ public class JadwalDB extends AppCompatActivity {
         myContext = c;
     }
 
-    public ArrayList DBSeninToArray() {
-            Cursor cursor = dbController.getDB().rawQuery("select * from myJadwal_out where Hari = \"Senin001\" ", null);
+    public String[] getArray(String hari) {
+        Cursor cursor = dbController.getDB().rawQuery("select * from myJadwal_out where Hari = \"" + hari + "\" ", null);
 
-            ArrayList<String> maplist = new ArrayList<String>();  // looping through all rows and adding to list
+        String[] maplist = new String[cursor.getColumnCount()];  // looping through all rows and adding to list
 
         try {
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
                     do {
                         for (int i = 1; i < cursor.getColumnCount(); i++) {
-                            maplist.add(cursor.getString(i));
+                            maplist[i - 1] = cursor.getString(i);
                         }
                     } while (cursor.moveToNext());
                     }
@@ -64,8 +64,6 @@ public class JadwalDB extends AppCompatActivity {
             }
 
         cursor.close();
-        myList.add("muncul lah nak");
-        //maplist.add("Loo");
             return maplist;
     }
 

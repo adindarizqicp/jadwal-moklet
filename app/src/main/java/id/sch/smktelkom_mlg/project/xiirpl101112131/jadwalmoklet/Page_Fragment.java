@@ -3,20 +3,27 @@ package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-public class Page_Fragment extends ListFragment {
+import java.util.ArrayList;
+
+import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.adapter.JadwalPelajaran_adapter;
+import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.model.JadwalPelajaran;
+
+public class Page_Fragment extends Fragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
 
     View view;
     JadwalDB jadwal;
+    ArrayList<JadwalPelajaran> jpList = new ArrayList<>();
+    JadwalPelajaran_adapter jpAdapter;
     private int mPage;
 
     public static Page_Fragment newInstance(int page) {
@@ -35,37 +42,9 @@ public class Page_Fragment extends ListFragment {
 
     }
 
-    // Inflate the fragment layout we defined above for this fragment
-    // Set the associated text for the title
-    public void ambilData(int nHari) {
-        String hari;
-        switch (nHari) {
-            case 1:
-                hari = "MataPelajaran";
-                break;
-            case 2:
-                hari = "Selasa";
-                break;
-            case 3:
-                hari = "Rabu";
-                break;
-            case 4:
-                hari = "Kamis";
-                break;
-            case 5:
-                hari = "Jumat";
-                break;
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_list_jadwal, container, false);
-        //TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        //tvTitle.setText("Fragment #" + mPage);
-
-
-
         return view;
     }
 
@@ -75,25 +54,23 @@ public class Page_Fragment extends ListFragment {
 
         jadwal = new JadwalDB(view.getContext());
 
-        view.findViewById(R.id.buttonUpdate).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                jadwal.getJadwalPelajaran("Senin", "Senin000");
-            }
-        });
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        jpAdapter = new JadwalPelajaran_adapter(jpList);
+        recyclerView.setAdapter(jpAdapter);
+
+        String[] myKode, myMapel, myGuru;
 
         if (mPage == 1) {
-            //muncul jadwal hari senin
+            myKode = jadwal.getArray("Senin000");
+            myMapel = jadwal.getArray("Senin001");
+            myGuru = jadwal.getArray("Senin002");
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.DBSeninToArray());
-            adapter.notifyDataSetChanged();
-            try {
-                getListView().setAdapter(adapter);
-            } catch (Exception e) {
-                Log.e("INI LO", "onActivityCreated: " + e.toString());
+            for (int i = 0; i < myKode.length; i++) {
+                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
             }
-
-            //error("Mau kesini nggk?");
+            jpAdapter.notifyDataSetChanged();
         } else if (mPage == 2) {
             /*JadwalDB jadwal = new JadwalDB();
             jadwal.getSelasa();

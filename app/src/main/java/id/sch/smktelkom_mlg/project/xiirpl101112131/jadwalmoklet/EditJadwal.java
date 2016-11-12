@@ -1,6 +1,5 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -37,7 +36,7 @@ public class EditJadwal extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.action_cancel) {
+        /*if (item.getItemId() == R.id.action_cancel) {
             Intent intent = new Intent(EditJadwal.this, ListJadwal.class);
             startActivity(intent);
             return true;
@@ -46,7 +45,7 @@ public class EditJadwal extends AppCompatActivity {
             Intent intent = new Intent(EditJadwal.this, ListJadwal.class);
             startActivity(intent);
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

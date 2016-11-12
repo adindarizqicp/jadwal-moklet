@@ -11,12 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="id.sch.smktelkom_mlg.learn.layoutjadwal.MainActivity">
 
-    <Button
-        android:id="@+id/buttonHitung"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hitung" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
@@ -66,5 +60,14 @@
         android:layout_toRightOf="@+id/imageView"
         android:text="Siswa"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/buttonHitung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Hitung" />
 
 </RelativeLayout>
