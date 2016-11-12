@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class SQLController {
 
-    private DBhelper dbHelper;
+    private DBHelper dbHelper;
     private Context ourcontext;
     private SQLiteDatabase database;
 
@@ -26,7 +26,7 @@ public class SQLController {
     }
 
     public SQLController open() throws SQLException {
-        dbHelper = new DBhelper(ourcontext);
+        dbHelper = new DBHelper(ourcontext);
         database = dbHelper.getWritableDatabase();
         Log.d("SQL BEH", "open: " + database.getPath().toString());
         return this;
@@ -42,40 +42,40 @@ public class SQLController {
                        String jp7, String jp8, String jp9,
                        String jp10, String jp11, String jp12) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DBhelper.HARI, hari);
-        contentValue.put(DBhelper.JP_01, jp1);
-        contentValue.put(DBhelper.JP_02, jp2);
-        contentValue.put(DBhelper.JP_03, jp3);
-        contentValue.put(DBhelper.JP_04, jp4);
-        contentValue.put(DBhelper.JP_05, jp5);
-        contentValue.put(DBhelper.JP_06, jp6);
-        contentValue.put(DBhelper.JP_07, jp7);
-        contentValue.put(DBhelper.JP_08, jp8);
-        contentValue.put(DBhelper.JP_09, jp9);
-        contentValue.put(DBhelper.JP_10, jp10);
-        contentValue.put(DBhelper.JP_11, jp11);
-        contentValue.put(DBhelper.JP_12, jp12);
-        database.insert(DBhelper.TABLE_NAME, null, contentValue);
+        contentValue.put(DBHelper.HARI, hari);
+        contentValue.put(DBHelper.JP_01, jp1);
+        contentValue.put(DBHelper.JP_02, jp2);
+        contentValue.put(DBHelper.JP_03, jp3);
+        contentValue.put(DBHelper.JP_04, jp4);
+        contentValue.put(DBHelper.JP_05, jp5);
+        contentValue.put(DBHelper.JP_06, jp6);
+        contentValue.put(DBHelper.JP_07, jp7);
+        contentValue.put(DBHelper.JP_08, jp8);
+        contentValue.put(DBHelper.JP_09, jp9);
+        contentValue.put(DBHelper.JP_10, jp10);
+        contentValue.put(DBHelper.JP_11, jp11);
+        contentValue.put(DBHelper.JP_12, jp12);
+        database.insert(DBHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch(String hari) {
         String[] columns = new String[]{
-                DBhelper.HARI,
-                DBhelper.JP_01,
-                DBhelper.JP_02,
-                DBhelper.JP_03,
-                DBhelper.JP_04,
-                DBhelper.JP_05,
-                DBhelper.JP_06,
-                DBhelper.JP_07,
-                DBhelper.JP_08,
-                DBhelper.JP_09,
-                DBhelper.JP_10,
-                DBhelper.JP_11,
-                DBhelper.JP_12};
-        String where = DBhelper.HARI + " =?";
+                DBHelper.HARI,
+                DBHelper.JP_01,
+                DBHelper.JP_02,
+                DBHelper.JP_03,
+                DBHelper.JP_04,
+                DBHelper.JP_05,
+                DBHelper.JP_06,
+                DBHelper.JP_07,
+                DBHelper.JP_08,
+                DBHelper.JP_09,
+                DBHelper.JP_10,
+                DBHelper.JP_11,
+                DBHelper.JP_12};
+        String where = DBHelper.HARI + " =?";
         String[] whereArgs = new String[]{hari + ""};
-        Cursor cursor = database.query(DBhelper.TABLE_NAME, columns, where,
+        Cursor cursor = database.query(DBHelper.TABLE_NAME, columns, where,
                 whereArgs, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -88,24 +88,24 @@ public class SQLController {
                       String jp7, String jp8, String jp9,
                       String jp10, String jp11, String jp12) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DBhelper.JP_01, jp1);
-        contentValue.put(DBhelper.JP_02, jp2);
-        contentValue.put(DBhelper.JP_03, jp3);
-        contentValue.put(DBhelper.JP_04, jp4);
-        contentValue.put(DBhelper.JP_05, jp5);
-        contentValue.put(DBhelper.JP_06, jp6);
-        contentValue.put(DBhelper.JP_07, jp7);
-        contentValue.put(DBhelper.JP_08, jp8);
-        contentValue.put(DBhelper.JP_09, jp9);
-        contentValue.put(DBhelper.JP_10, jp10);
-        contentValue.put(DBhelper.JP_11, jp11);
-        contentValue.put(DBhelper.JP_12, jp12);
-        int i = database.update(DBhelper.TABLE_NAME, contentValue,
-                DBhelper.HARI + " = " + hari, null);
+        contentValue.put(DBHelper.JP_01, jp1);
+        contentValue.put(DBHelper.JP_02, jp2);
+        contentValue.put(DBHelper.JP_03, jp3);
+        contentValue.put(DBHelper.JP_04, jp4);
+        contentValue.put(DBHelper.JP_05, jp5);
+        contentValue.put(DBHelper.JP_06, jp6);
+        contentValue.put(DBHelper.JP_07, jp7);
+        contentValue.put(DBHelper.JP_08, jp8);
+        contentValue.put(DBHelper.JP_09, jp9);
+        contentValue.put(DBHelper.JP_10, jp10);
+        contentValue.put(DBHelper.JP_11, jp11);
+        contentValue.put(DBHelper.JP_12, jp12);
+        int i = database.update(DBHelper.TABLE_NAME, contentValue,
+                DBHelper.HARI + " = " + hari, null);
         return i;
     }
 
     public void delete(String hari) {
-        database.delete(DBhelper.TABLE_NAME, DBhelper.HARI + "=\"" + hari + "\"", null);
+        database.delete(DBHelper.TABLE_NAME, DBHelper.HARI + "=\"" + hari + "\"", null);
     }
 }

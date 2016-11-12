@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Adinda Rizqi on 11/4/2016.
  */
 
-public class DBhelper extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
 
     // Table Name
     public static final String TABLE_NAME = "myJadwal_out";
@@ -53,7 +53,7 @@ public class DBhelper extends SQLiteOpenHelper {
             JP_11 + " VARCHAR," +
             JP_12 + " VARCHAR);";
 
-    public DBhelper(Context context) {
+    public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

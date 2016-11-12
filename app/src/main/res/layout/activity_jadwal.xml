@@ -21,16 +21,6 @@
         android:src="@drawable/logo"
         app:srcCompat="@drawable/logo" />
 
-    <ImageButton
-        android:id="@+id/imageButtonSiswa"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView"
-        android:layout_marginTop="66dp"
-        android:src="@drawable/guru" />
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="120dp"
@@ -41,33 +31,14 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/murid" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_toLeftOf="@+id/imageView"
-        android:layout_toStartOf="@+id/imageView"
-        android:text="Guru"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView"
-        android:layout_toEndOf="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
-        android:text="Siswa"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/buttonHitung"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/imageButtonSiswa"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="Hitung" />
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/guru" />
 
 </RelativeLayout>
