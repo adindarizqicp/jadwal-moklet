@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="horizontal"
+    android:paddingBottom="0dp"
+    android:paddingTop="0dp">
+
+    <TextView
+        android:id="@+id/E_no"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@android:color/black"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:textColor="@android:color/background_light"
+        tools:text="12" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutListEditJadwal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.07"
+        android:background="?attr/colorButtonNormal"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/E_kode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Kode" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/E_mapel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mata Pelajaran" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/E_guru"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Guru" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,6 +1,8 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.support.v7.app.AppCompatActivity;
@@ -21,10 +23,13 @@ import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.SQLite.SQLContr
  */
 
 public class JadwalDB extends AppCompatActivity {
-    public String kelas = "XIIRPL";
+    String kelas, kelass;
     FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = fireDB.getReference("XIIRPL1");
-    DatabaseReference myRef_G = fireDB.getReference("Guru");
+    DatabaseReference myRef;
+    DatabaseReference myRef_G;
+
+    SharedPreferences sharedpreferences;
+
 
     ArrayList<String> myList = new ArrayList<String>();
     ArrayList<String> myListSenin;
@@ -33,6 +38,7 @@ public class JadwalDB extends AppCompatActivity {
     String[] myJ_C = new String[12];
     String[] myJ_G = new String[12];
     String notFound = "-";
+    ProgressDialog progressDialog;
     private SQLController dbController;
 
     public JadwalDB(Context c) {
@@ -41,7 +47,92 @@ public class JadwalDB extends AppCompatActivity {
         dbController.open();
         Log.d("SQL BEH", "open: " + dbController.toString());
 
+        /*sharedpreferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
+        this.kelas = (sharedpreferences.getString(Kelas, ""));*/
+        this.kelas = "XIIRPL";
+        this.kelass = "XIIRPL1";
+        myRef = fireDB.getReference(kelass);
+        myRef_G = fireDB.getReference("Guru");
+
         myContext = c;
+    }
+
+    public void updateDB() {
+        progressDialog = new ProgressDialog(myContext);
+        progressDialog.setMessage("Updating data");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+
+        new Thread(new Runnable() {
+            int time = 1000;
+
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Senin");
+                    }
+                });
+                progressDialog.setProgress(20);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Selasa");
+                    }
+                });
+                progressDialog.setProgress(40);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Rabu");
+                    }
+                });
+                progressDialog.setProgress(60);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Kamis");
+                    }
+                });
+                progressDialog.setProgress(80);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Jumat");
+                    }
+                });
+                progressDialog.setProgress(100);
+                progressDialog.dismiss();
+            }
+        }).start();
     }
 
     public String[] getArray(String hari) {
@@ -67,7 +158,8 @@ public class JadwalDB extends AppCompatActivity {
             return maplist;
     }
 
-    public void getJadwalPelajaran(String hari, final String record) {
+    public void getJadwalPelajaran(String fHari) {
+        final String hari = fHari;
         Log.d("&&", "GET SENIN");
         myRef.child(hari).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,8 +187,8 @@ public class JadwalDB extends AppCompatActivity {
                     Log.d("&&", "onDataChange: " + i + " ~ " + myJ[i]);
                     //convert();
                 }
-                input(record, myJ);
-                convert();
+                input(hari + "000", myJ);
+                convert(hari, myJ);
             }
 
             @Override
@@ -108,10 +200,11 @@ public class JadwalDB extends AppCompatActivity {
         Log.d("&&", "GET SENIN_END");
     }
 
-    public void convert() {
+    public void convert(String fHari, String[] myJ2) {
+        final String hari = fHari;
         //KONVERSI DATA--------------------------
-        if (myJ[0] != null) {
-            myRef_G.child(myJ[0].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[0] != null) {
+            myRef_G.child(myJ2[0].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -135,8 +228,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[1] != null) {
-            myRef_G.child(myJ[1].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[1] != null) {
+            myRef_G.child(myJ2[1].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -159,8 +252,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[2] != null) {
-            myRef_G.child(myJ[2].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[2] != null) {
+            myRef_G.child(myJ2[2].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -183,8 +276,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[3] != null) {
-            myRef_G.child(myJ[3].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[3] != null) {
+            myRef_G.child(myJ2[3].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -207,8 +300,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[4] != null) {
-            myRef_G.child(myJ[4].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[4] != null) {
+            myRef_G.child(myJ2[4].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -231,8 +324,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[5] != null) {
-            myRef_G.child(myJ[5].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[5] != null) {
+            myRef_G.child(myJ2[5].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -255,8 +348,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[6] != null) {
-            myRef_G.child(myJ[6].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[6] != null) {
+            myRef_G.child(myJ2[6].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -279,8 +372,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[7] != null) {
-            myRef_G.child(myJ[7].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[7] != null) {
+            myRef_G.child(myJ2[7].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -303,8 +396,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[8] != null) {
-            myRef_G.child(myJ[8].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[8] != null) {
+            myRef_G.child(myJ2[8].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -327,8 +420,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[9] != null) {
-            myRef_G.child(myJ[9].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[9] != null) {
+            myRef_G.child(myJ2[9].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -351,8 +444,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[10] != null) {
-            myRef_G.child(myJ[10].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[10] != null) {
+            myRef_G.child(myJ2[10].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -375,8 +468,8 @@ public class JadwalDB extends AppCompatActivity {
             });
         }
 
-        if (myJ[11] != null) {
-            myRef_G.child(myJ[11].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (myJ2[11] != null) {
+            myRef_G.child(myJ2[11].toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
@@ -390,8 +483,8 @@ public class JadwalDB extends AppCompatActivity {
                         myJ_G[11] = notFound;
                         Log.d("&&_gendeng", "onDataChange myJ_C 12: " + myJ_C[11]);
                     }
-                    input("Senin001", myJ_C);
-                    input("Senin002", myJ_G);
+                    input(hari + "001", myJ_C);
+                    input(hari + "002", myJ_G);
                 }
 
                 @Override
@@ -472,3 +565,4 @@ public class JadwalDB extends AppCompatActivity {
 
 
 }
+

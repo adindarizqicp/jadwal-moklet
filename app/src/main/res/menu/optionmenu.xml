@@ -12,8 +12,8 @@
         android:title="Update"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_cancel"
+        android:id="@+id/action_keluar"
         android:orderInCategory="100"
-        android:title="Cancel"
+        android:title="Keluar"
         app:showAsAction="never" />
 </menu>

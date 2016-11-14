@@ -1,6 +1,7 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -24,6 +26,7 @@ public class Page_Fragment extends Fragment {
     JadwalDB jadwal;
     ArrayList<JadwalPelajaran> jpList = new ArrayList<>();
     JadwalPelajaran_adapter jpAdapter;
+    RecyclerView recyclerView;
     private int mPage;
 
     public static Page_Fragment newInstance(int page) {
@@ -39,7 +42,7 @@ public class Page_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
-
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -54,7 +57,7 @@ public class Page_Fragment extends Fragment {
 
         jadwal = new JadwalDB(view.getContext());
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(layoutManager);
         jpAdapter = new JadwalPelajaran_adapter(jpList);
@@ -67,19 +70,80 @@ public class Page_Fragment extends Fragment {
             myMapel = jadwal.getArray("Senin001");
             myGuru = jadwal.getArray("Senin002");
 
-            for (int i = 0; i < myKode.length; i++) {
+            jpList.clear();
+            for (int i = 0; i < myKode.length - 1; i++) {
                 jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
             }
             jpAdapter.notifyDataSetChanged();
         } else if (mPage == 2) {
-            /*JadwalDB jadwal = new JadwalDB();
-            jadwal.getSelasa();
-            adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, jadwal.getList());
-            adapter.notifyDataSetChanged();
-            getListView().setAdapter(adapter);
-            //message("hah?!");*/
+            myKode = jadwal.getArray("Selasa000");
+            myMapel = jadwal.getArray("Selasa001");
+            myGuru = jadwal.getArray("Selasa002");
+
+            jpList.clear();
+            for (int i = 0; i < myKode.length - 1; i++) {
+                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            }
+            jpAdapter.notifyDataSetChanged();
+        } else if (mPage == 3) {
+            myKode = jadwal.getArray("Rabu000");
+            myMapel = jadwal.getArray("Rabu001");
+            myGuru = jadwal.getArray("Rabu002");
+
+            jpList.clear();
+            for (int i = 0; i < myKode.length - 1; i++) {
+                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            }
+            jpAdapter.notifyDataSetChanged();
+        } else if (mPage == 4) {
+            myKode = jadwal.getArray("Kamis000");
+            myMapel = jadwal.getArray("Kamis001");
+            myGuru = jadwal.getArray("Kamis002");
+
+            jpList.clear();
+            for (int i = 0; i < myKode.length - 1; i++) {
+                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            }
+            jpAdapter.notifyDataSetChanged();
+        } else if (mPage == 5) {
+            myKode = jadwal.getArray("Jumat000");
+            myMapel = jadwal.getArray("Jumat001");
+            myGuru = jadwal.getArray("Jumat002");
+
+            jpList.clear();
+            for (int i = 0; i < myKode.length - 1; i++) {
+                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            }
+            jpAdapter.notifyDataSetChanged();
         }
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_keluar) {
+            //sharedpreferences nya dihapus
+            Intent intent = new Intent(getContext(), activity_jadwal.class);
+            startActivity(intent);
+            return true;
+        }
+        if (item.getItemId() == R.id.action_update) {
+            jadwal.updateDB();
+            jpAdapter.swap(jpList);
+            //jpAdapter.notifyDataSetChanged();
+            recyclerView.swapAdapter(jpAdapter, true);
+            return true;
+        }
+        if (item.getItemId() == R.id.action_edit) {
+            Intent intent = new Intent(getActivity(), EditJadwal.class);
+            intent.putExtra("intHari", mPage);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void error(String teks) {
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
@@ -93,6 +157,4 @@ public class Page_Fragment extends Fragment {
                 });
         alertDialog.show();
     }
-
-
 }
