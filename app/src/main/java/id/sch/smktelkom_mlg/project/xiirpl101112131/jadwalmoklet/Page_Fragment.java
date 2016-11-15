@@ -123,10 +123,30 @@ public class Page_Fragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_keluar) {
-            //sharedpreferences nya dihapus
-            Intent intent = new Intent(getContext(), activity_jadwal.class);
-            startActivity(intent);
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            //sharedpreferences nya dihapus
+                            Intent intent = new Intent(getContext(), activity_jadwal.class);
+                            startActivity(intent);
+
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Are you sure want to exit?").setNegativeButton("Yes", dialogClickListener)
+                    .setPositiveButton("No", dialogClickListener).show();
             return true;
+
+
         }
         if (item.getItemId() == R.id.action_update) {
             jadwal.updateDB();
