@@ -123,6 +123,8 @@ public class Page_Fragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_keluar) {
+
+
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -149,10 +151,32 @@ public class Page_Fragment extends Fragment {
 
         }
         if (item.getItemId() == R.id.action_update) {
-            jadwal.updateDB();
-            jpAdapter.swap(jpList);
+            if (jadwal.internetConnectionAvailable(5000) == true) {
+                jadwal.updateDB();
+            } else {
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Your phone is not connected to internet, please make sure you have an internet connection").setNegativeButton("OK", dialogClickListener).show();
+                //muncullll
+            }
+            //jpAdapter.swap(jpList);
             //jpAdapter.notifyDataSetChanged();
-            recyclerView.swapAdapter(jpAdapter, true);
+            //recyclerView.swapAdapter(jpAdapter, true);
             return true;
         }
         if (item.getItemId() == R.id.action_edit) {
