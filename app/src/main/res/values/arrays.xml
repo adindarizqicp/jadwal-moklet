@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="kelas">
-        <item>X</item>
-        <item>XI</item>
-        <item>XII</item>
+    <string-array name="Kelas">
+        <item>Kelas X</item>
+        <item>Kelas XI</item>
+        <item>Kelas XII</item>
     </string-array>
 </resources>
