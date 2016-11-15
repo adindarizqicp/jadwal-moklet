@@ -17,7 +17,6 @@
         </activity>
         <activity android:name=".InputActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".EditJadwal" />
         <!--<activity android:name=".ListJadwal"></activity>-->
     </application>
 
