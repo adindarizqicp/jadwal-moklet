@@ -1,8 +1,10 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -92,16 +94,60 @@ public class EditJadwal extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_cancel) {
-            Intent intent = new Intent(EditJadwal.this, MainActivity.class);
-            //intent.putExtra("mPage", intHari);
-            startActivity(intent);
+
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            Intent intent = new Intent(EditJadwal.this, MainActivity.class);
+                            //intent.putExtra("mPage", intHari);
+                            startActivity(intent);
+
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure want to cancel this action?").setNegativeButton("Yes", dialogClickListener)
+                    .setPositiveButton("No", dialogClickListener).show();
             return true;
+
         }
         if (item.getItemId() == R.id.action_save) {
-            updateDB(hari);
-            Intent intent = new Intent(EditJadwal.this, MainActivity.class);
-            //intent.putExtra("mPage", intHari);
-            startActivity(intent);
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            updateDB(hari);
+                            Intent intent = new Intent(EditJadwal.this, MainActivity.class);
+                            //intent.putExtra("mPage", intHari)
+                            startActivity(intent);
+
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure want to save this action?").setNegativeButton("Yes", dialogClickListener)
+                    .setPositiveButton("No", dialogClickListener).show();
+
+
+
+
             return true;
         }
         return super.onOptionsItemSelected(item);

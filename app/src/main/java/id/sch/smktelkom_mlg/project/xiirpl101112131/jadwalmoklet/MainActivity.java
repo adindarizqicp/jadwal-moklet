@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
 
+
     }
 
     @Override
@@ -44,6 +45,5 @@ public class MainActivity extends AppCompatActivity {
     public Context getContext() {
         return mContext;
     }
-
 
 }
