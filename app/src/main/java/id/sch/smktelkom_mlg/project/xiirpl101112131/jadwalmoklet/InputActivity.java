@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -62,13 +63,23 @@ public class InputActivity extends AppCompatActivity {
 
         kelas = (Spinner) findViewById(R.id.spinnerKelas);
 
-
-        Intent intent = new Intent(InputActivity.this, MainActivity.class);
+        sharedpreferences = getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+        if (sharedpreferences.contains(Kelas)) {
+            Intent intent = new Intent(InputActivity.this, MainActivity.class);
             startActivity(intent);
-
+        }
 
     }
 
+    public void Save(View view) {
+        String n = kelas.getSelectedItem().toString();
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(String.valueOf(kelas), n);
+        editor.commit();
 
+        Intent intent = new Intent(InputActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }

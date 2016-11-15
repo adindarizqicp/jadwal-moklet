@@ -21,15 +21,15 @@
         android:src="@drawable/logo"
         app:srcCompat="@drawable/logo" />
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <ImageButton
+        android:id="@+id/imageButtonGuru"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/imageButtonSiswa"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/murid" />
+        android:background="@drawable/iconguru" />/>
 
     <ImageButton
         android:id="@+id/imageButtonSiswa"
@@ -38,7 +38,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/imageView"
-        android:layout_marginTop="64dp"
-        android:src="@drawable/guru" />
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="57dp"
+        android:background="@drawable/iconmurid" />
+
 
 </RelativeLayout>
