@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -34,7 +35,10 @@ public class JadwalDB extends AppCompatActivity {
     FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
     DatabaseReference myRef_G;
+
     SharedPreferences sharedpreferences;
+
+
     ArrayList<String> myList = new ArrayList<String>();
     ArrayList<String> myListSenin;
     Context myContext;
@@ -42,8 +46,8 @@ public class JadwalDB extends AppCompatActivity {
     String[] myJ_C = new String[12];
     String[] myJ_G = new String[12];
     String notFound = "-";
+    ProgressDialog progressDialog;
     private SQLController dbController;
-
 
     public JadwalDB(Context c) {
         MainActivity m = new MainActivity();
@@ -59,6 +63,85 @@ public class JadwalDB extends AppCompatActivity {
         myRef_G = fireDB.getReference("Guru");
 
         myContext = c;
+    }
+
+    public void updateDB() {
+        progressDialog = new ProgressDialog(myContext);
+        progressDialog.setMessage("Updating data");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+        progressDialog.setIndeterminate(false);
+        progressDialog.setProgress(0);
+        progressDialog.show();
+
+        new Thread(new Runnable() {
+            int time = 1500;
+
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Senin");
+                    }
+                });
+                progressDialog.setProgress(20);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Selasa");
+                    }
+                });
+                progressDialog.setProgress(40);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Rabu");
+                    }
+                });
+                progressDialog.setProgress(60);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Kamis");
+                    }
+                });
+                progressDialog.setProgress(80);
+                try {
+                    Thread.sleep(time);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        getJadwalPelajaran("Jumat");
+                    }
+                });
+                progressDialog.setProgress(100);
+                progressDialog.dismiss();
+            }
+        }).start();
     }
 
     public String[] getArray(String hari) {
@@ -510,7 +593,6 @@ public class JadwalDB extends AppCompatActivity {
         }
         return inetAddress != null && !inetAddress.equals("");
     }
-
 
 }
 

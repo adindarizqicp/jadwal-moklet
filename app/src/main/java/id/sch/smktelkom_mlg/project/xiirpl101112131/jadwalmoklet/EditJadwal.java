@@ -107,6 +107,7 @@ public class EditJadwal extends AppCompatActivity {
                             Intent intent = new Intent(EditJadwal.this, MainActivity.class);
                             //intent.putExtra("mPage", intHari);
                             startActivity(intent);
+                            finish();
                             break;
                     }
                 }
@@ -133,6 +134,7 @@ public class EditJadwal extends AppCompatActivity {
                             Intent intent = new Intent(EditJadwal.this, MainActivity.class);
                             //intent.putExtra("mPage", intHari)
                             startActivity(intent);
+                            finish();
                             break;
                     }
                 }

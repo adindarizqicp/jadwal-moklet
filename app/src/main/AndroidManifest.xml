@@ -19,7 +19,6 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".EditJadwal" />
         <!-- <activity android:name=".ListJadwal"></activity> -->
-        <activity android:name=".AsycnTaskActivity"></activity>
     </application>
 
 </manifest>

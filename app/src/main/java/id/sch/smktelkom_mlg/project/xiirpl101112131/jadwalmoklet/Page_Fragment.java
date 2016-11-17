@@ -63,6 +63,10 @@ public class Page_Fragment extends Fragment {
         jpAdapter = new JadwalPelajaran_adapter(jpList);
         recyclerView.setAdapter(jpAdapter);
 
+        fillData();
+    }
+
+    public void fillData() {
         String[] myKode, myMapel, myGuru;
 
         if (mPage == 1) {
@@ -137,7 +141,7 @@ public class Page_Fragment extends Fragment {
                             //sharedpreferences nya dihapus
                             Intent intent = new Intent(getContext(), activity_jadwal.class);
                             startActivity(intent);
-
+                            getActivity().finish();
                             break;
                     }
                 }
@@ -152,9 +156,10 @@ public class Page_Fragment extends Fragment {
         }
         if (item.getItemId() == R.id.action_update) {
             if (jadwal.internetConnectionAvailable(5000) == true) {
-                Intent intent = new Intent(getContext(), AsycnTaskActivity.class);
-                intent.putExtra("jadwalDB", jadwal);
-                startActivity(intent);
+                jadwal.updateDB();
+                fillData();
+                jpAdapter.swap(jpList);
+                jpAdapter.notifyDataSetChanged();
             } else {
 
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

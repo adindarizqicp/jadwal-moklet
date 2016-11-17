@@ -46,12 +46,7 @@ public class JadwalPelajaran_adapter extends RecyclerView.Adapter<JadwalPelajara
     }
 
     public void swap(ArrayList<JadwalPelajaran> jp) {
-        if (JP_list != null) {
-            JP_list.clear();
-            JP_list.addAll(jp);
-        } else {
-            JP_list = jp;
-        }
+        this.JP_list = jp;
         notifyDataSetChanged();
     }
 
