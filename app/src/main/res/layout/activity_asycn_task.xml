@@ -16,11 +16,12 @@
         style="@style/Base.TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Updating data ..." />
 
     <ProgressBar
         android:id="@+id/progressBarAsyncTask"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 </LinearLayout>

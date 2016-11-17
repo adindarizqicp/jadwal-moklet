@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -31,18 +29,7 @@ import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.SQLite.SQLContr
  * Created by Adinda Rizqi on 10/28/2016.
  */
 
-public class JadwalDB extends AppCompatActivity implements Parcelable {
-    public static final Creator<JadwalDB> CREATOR = new Creator<JadwalDB>() {
-        @Override
-        public JadwalDB createFromParcel(Parcel in) {
-            return new JadwalDB(in);
-        }
-
-        @Override
-        public JadwalDB[] newArray(int size) {
-            return new JadwalDB[size];
-        }
-    };
+public class JadwalDB extends AppCompatActivity {
     String kelas, kelass;
     FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
@@ -72,21 +59,6 @@ public class JadwalDB extends AppCompatActivity implements Parcelable {
         myRef_G = fireDB.getReference("Guru");
 
         myContext = c;
-    }
-
-    protected JadwalDB(Parcel in) {
-        kelas = in.readString();
-        kelass = in.readString();
-        myList = in.createStringArrayList();
-        myListSenin = in.createStringArrayList();
-        myJ = in.createStringArray();
-        myJ_C = in.createStringArray();
-        myJ_G = in.createStringArray();
-        notFound = in.readString();
-    }
-
-    public void updateDB() {
-
     }
 
     public String[] getArray(String hari) {
@@ -539,22 +511,6 @@ public class JadwalDB extends AppCompatActivity implements Parcelable {
         return inetAddress != null && !inetAddress.equals("");
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(kelas);
-        parcel.writeString(kelass);
-        parcel.writeStringList(myList);
-        parcel.writeStringList(myListSenin);
-        parcel.writeStringArray(myJ);
-        parcel.writeStringArray(myJ_C);
-        parcel.writeStringArray(myJ_G);
-        parcel.writeString(notFound);
-    }
 
 }
 
