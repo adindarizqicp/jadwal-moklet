@@ -152,7 +152,9 @@ public class Page_Fragment extends Fragment {
         }
         if (item.getItemId() == R.id.action_update) {
             if (jadwal.internetConnectionAvailable(5000) == true) {
-                jadwal.updateDB();
+                Intent intent = new Intent(getContext(), AsycnTaskActivity.class);
+                intent.putExtra("jadwalDB", jadwal);
+                startActivity(intent);
             } else {
 
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
