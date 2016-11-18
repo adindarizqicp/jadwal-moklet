@@ -12,6 +12,11 @@
         android:title="Update"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="About Us"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_keluar"
         android:orderInCategory="100"
         android:title="Keluar"

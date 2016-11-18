@@ -185,6 +185,12 @@ public class Page_Fragment extends Fragment {
             startActivity(intent);
             return true;
         }
+        if (item.getItemId() == R.id.action_about) {
+            Intent intent = new Intent(getActivity(), AboutUs.class);
+            startActivity(intent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

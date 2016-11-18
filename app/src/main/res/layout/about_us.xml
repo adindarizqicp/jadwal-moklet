@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center|top"
+            android:text="ABOUT US"
+            android:textSize="20sp" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center|top"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="120dp"
+            app:layout_heightPercent="25%"
+            app:layout_widthPercent="30%"
+            app:srcCompat="@drawable/info" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="140dp"
+            android:text="Aplikasi Jadwal Moklet adalah aplikasi untuk mengakses jadwal pelajaran bagi siswa-siswi  serta guru SMK Telkom Malang. Dengan aplikasi ini mempermudah dalam hal mencari jadwal pelajaran untuk setiap kelas tanpa perlu kesulitan saat membaca serta konversi kode mata pelajaran."
+            android:textColor="@android:color/background_dark"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center|top"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="275dp"
+            app:layout_heightPercent="25%"
+            app:layout_widthPercent="30%"
+            app:srcCompat="@drawable/tanya" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="290dp"
+            android:text=" 1. Saat pertama membuka aplikasi , pilih (masuk sebagai) sesuai kebutuhan siswa(bagi siswa), guru (bagi guru). \n 2. Saat masuk sebagai siswa, lalu pilih jurusan serta kelas sesuai yang dibutuhkan.  \n 3. Setelah itu jadwal akan muncul sesuai dengan kelas yang telah diinputkan. \n 4. Jika ada perubahan jadwal dan anda tidak memilik internet untuk memperbarui jadwal (update) maka bisa gunakan menu edit yang ada untuk mengupdate secara manual. \n 5. Jika anda memiliki internet maka bisa mengupdate jadwal dengan menu update"
+            android:textColor="@android:color/background_dark"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center|top"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="540dp"
+            app:layout_heightPercent="25%"
+            app:layout_widthPercent="30%"
+            app:srcCompat="@drawable/group" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView3"
+            android:layout_alignStart="@+id/imageView3"
+            android:layout_below="@+id/imageView3"
+            android:layout_marginTop="2dp"
+            android:text=" SMK TELKOM MALANG \n \n Adinda Rizqi Caesaria Putri \n Bunga Pramesti Savitri \n Hilmi Aziz Bukhori \n Ni Made Distiara Landephy Aryashila \n "
+            android:textColor="@android:color/background_dark" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center|top"
+            app:srcCompat="@drawable/icon" />
+
+
+    </RelativeLayout>
+</ScrollView>
