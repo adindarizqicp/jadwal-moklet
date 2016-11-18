@@ -57,12 +57,18 @@ public class JadwalDB extends AppCompatActivity {
 
         /*sharedpreferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         this.kelas = (sharedpreferences.getString(Kelas, ""));*/
-        this.kelas = "XIIRPL";
-        this.kelass = "XIIRPL1";
-        myRef = fireDB.getReference(kelass);
-        myRef_G = fireDB.getReference("Guru");
+        /*this.kelas = "XIIRPL";
+        this.kelass = "XIIRPL1";*/
+
 
         myContext = c;
+    }
+
+    public void setKelas(String kelas, String kelasAngka) {
+        this.kelas = kelas;
+        this.kelass = kelasAngka;
+        myRef = fireDB.getReference(kelass);
+        myRef_G = fireDB.getReference("Guru");
     }
 
     public void updateDB() {
@@ -142,6 +148,14 @@ public class JadwalDB extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         }).start();
+    }
+
+    public void hapusJadwalDB() {
+        try {
+            dbController.deleteTabel();
+        } catch (Exception e) {
+
+        }
     }
 
     public String[] getArray(String hari) {
@@ -504,16 +518,16 @@ public class JadwalDB extends AppCompatActivity {
         }
     }
 
-    public void input(String tbl, String[] col) {
+    public void input(String record, String[] col) {
         try { //HAPUS RECORD YG SDH ADA
-            dbController.delete(tbl);
+            dbController.delete(record);
         } catch (SQLException e) {
             System.out.println("&& error " + e.toString());
         }
         //INSERT KE SQLITE---------------------------
         try {
             dbController.insert(
-                    tbl,
+                    record,
                     col[0],
                     col[1],
                     col[2],

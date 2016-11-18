@@ -1,6 +1,7 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import com.astuetz.PagerSlidingTabStrip;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
     private Context mContext = this;
 
     @Override
@@ -46,4 +49,9 @@ public class MainActivity extends AppCompatActivity {
         return mContext;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
 }

@@ -51,4 +51,11 @@
         app:layout_widthPercent="30%"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+
 </android.support.percent.PercentFrameLayout>

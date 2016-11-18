@@ -108,4 +108,8 @@ public class SQLController {
     public void delete(String hari) {
         database.delete(DBHelper.TABLE_NAME, DBHelper.HARI + "=\"" + hari + "\"", null);
     }
+
+    public void deleteTabel() {
+        database.delete(DBHelper.TABLE_NAME, null, null);
+    }
 }

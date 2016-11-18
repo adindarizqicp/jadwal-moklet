@@ -2,6 +2,7 @@ package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,10 +19,14 @@ import java.util.ArrayList;
 import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.adapter.JadwalPelajaran_adapter;
 import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.model.JadwalPelajaran;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Page_Fragment extends Fragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
-
+    private static final String PREF_NAME = "MyPrefs";
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     View view;
     JadwalDB jadwal;
     ArrayList<JadwalPelajaran> jpList = new ArrayList<>();
@@ -43,6 +48,8 @@ public class Page_Fragment extends Fragment {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
         setHasOptionsMenu(true);
+
+        pref = getContext().getSharedPreferences("Options", MODE_PRIVATE);
     }
 
     @Override
@@ -51,11 +58,17 @@ public class Page_Fragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         jadwal = new JadwalDB(view.getContext());
+        String kelas = pref.getString("Jurang", "").toString();
+        String kelasWithAngka = kelas.replaceAll("\\s", "");
+        String kelasNoAngka = kelasWithAngka.replaceAll("[^A-Za-z]", "");
+
+        jadwal.setKelas(kelasNoAngka, kelasWithAngka);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
@@ -63,10 +76,6 @@ public class Page_Fragment extends Fragment {
         jpAdapter = new JadwalPelajaran_adapter(jpList);
         recyclerView.setAdapter(jpAdapter);
 
-        fillData();
-    }
-
-    public void fillData() {
         String[] myKode, myMapel, myGuru;
 
         if (mPage == 1) {
@@ -122,9 +131,11 @@ public class Page_Fragment extends Fragment {
         }
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        SharedPreferences pref = getContext().getSharedPreferences("Options", MODE_PRIVATE);
+        editor = pref.edit();
 
         if (item.getItemId() == R.id.action_keluar) {
 
@@ -138,10 +149,13 @@ public class Page_Fragment extends Fragment {
                             break;
 
                         case DialogInterface.BUTTON_NEGATIVE:
-                            //sharedpreferences nya dihapus
+
                             Intent intent = new Intent(getContext(), activity_jadwal.class);
                             startActivity(intent);
-                            getActivity().finish();
+
+                            editor.clear();
+                            jadwal.hapusJadwalDB();
+
                             break;
                     }
                 }
@@ -150,16 +164,14 @@ public class Page_Fragment extends Fragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage("Are you sure want to exit?").setNegativeButton("Yes", dialogClickListener)
                     .setPositiveButton("No", dialogClickListener).show();
+
             return true;
 
-
         }
+
         if (item.getItemId() == R.id.action_update) {
             if (jadwal.internetConnectionAvailable(5000) == true) {
                 jadwal.updateDB();
-                fillData();
-                jpAdapter.swap(jpList);
-                jpAdapter.notifyDataSetChanged();
             } else {
 
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -192,12 +204,6 @@ public class Page_Fragment extends Fragment {
             startActivity(intent);
             return true;
         }
-        if (item.getItemId() == R.id.action_about) {
-            Intent intent = new Intent(getActivity(), AboutUs.class);
-            startActivity(intent);
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -214,4 +220,6 @@ public class Page_Fragment extends Fragment {
                 });
         alertDialog.show();
     }
+
+
 }
