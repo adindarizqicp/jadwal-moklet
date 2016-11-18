@@ -69,12 +69,13 @@ public class JadwalDB extends AppCompatActivity {
         progressDialog = new ProgressDialog(myContext);
         progressDialog.setMessage("Updating data");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(false);
         progressDialog.setProgress(0);
         progressDialog.show();
 
         new Thread(new Runnable() {
-            int time = 1000;
+            int time = 1500;
 
             @Override
             public void run() {

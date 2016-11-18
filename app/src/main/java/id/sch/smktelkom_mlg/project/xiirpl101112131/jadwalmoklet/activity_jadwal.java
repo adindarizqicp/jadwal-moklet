@@ -17,7 +17,7 @@ public class activity_jadwal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jadwal);
+        setContentView(R.layout.activity_jadwal2);
 
         findViewById(R.id.imageButtonSiswa).setOnClickListener(new View.OnClickListener() {
             @Override

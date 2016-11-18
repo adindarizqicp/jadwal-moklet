@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +21,7 @@ public class InputActivity extends AppCompatActivity {
     public static final String Kelas = "kelas";
     SharedPreferences sharedpreferences;
     Spinner kelas;
+    TextView back;
 
 
     Spinner spKelas, spJurusanAngka;
@@ -40,6 +42,7 @@ public class InputActivity extends AppCompatActivity {
 
         spKelas = (Spinner) findViewById(R.id.spinnerKelas);
         spJurusanAngka = (Spinner) findViewById(R.id.spinnerJurusanAngka);
+        back = (TextView) findViewById(R.id.textViewExit);
 
         adapter = new JurusanAngkaAdapter(this, listJurusanAngka);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,6 +72,13 @@ public class InputActivity extends AppCompatActivity {
             Intent intent = new Intent(InputActivity.this, MainActivity.class);
             startActivity(intent);
         }
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
     }
 
