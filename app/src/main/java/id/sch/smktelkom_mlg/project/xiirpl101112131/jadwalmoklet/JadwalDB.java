@@ -1,7 +1,9 @@
 package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -25,6 +27,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.SQLite.SQLController;
+import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.model.MataPelajaran;
+import id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.model.MataPelajaran_C;
 
 /**
  * Created by Adinda Rizqi on 10/28/2016.
@@ -80,7 +84,7 @@ public class JadwalDB extends AppCompatActivity {
         progressDialog.setProgress(0);
         progressDialog.show();
 
-        new Thread(new Runnable() {
+        Thread t = new Thread(new Runnable() {
             int time = 1500;
 
             @Override
@@ -146,8 +150,11 @@ public class JadwalDB extends AppCompatActivity {
                 });
                 progressDialog.setProgress(100);
                 progressDialog.dismiss();
+                ((Activity) myContext).finish();
+                myContext.startActivity(new Intent(myContext, MainActivity.class));
             }
-        }).start();
+        });
+        t.start();
     }
 
     public void hapusJadwalDB() {
