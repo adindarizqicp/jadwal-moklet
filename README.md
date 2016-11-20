@@ -29,7 +29,7 @@
 * ![23](https://cloud.githubusercontent.com/assets/22070283/20460934/1d7c0000-aea7-11e6-8414-9906f9d70a61.jpg)
 
 
-* Video Aplikasi    : 
+* Video Aplikasi    : https://drive.google.com/open?id=0B5P8SfPyGXPrSzZ6SzJGN0gxUjg
 
 * Link File Apk dari Aplikasi : https://drive.google.com/open?id=0B5P8SfPyGXPrSVRVbGVfQ1JMcFk
 
@@ -37,17 +37,17 @@
  1. Nama   : Adinda Rizqi Caesaria Putri <br>
     Kelas  : XIIRPL1 <br>
     No Urut: 01 <br>
-    NIS    : 4271/1169.063 <br>
+    NIS    : 4271/1169.070 <br>
     User   : adindarizqicp <br>
  2. Nama   : Bunga Pramesti Savitri <br>
     Kelas  : XIIRPL1 <br>
     No Urut: 11 <br>
-    NIS    : 4312/1210.063 <br>
+    NIS    : 4312/1210.070 <br>
     User   : bungasav <br>
  3. Nama   : Hilmi Aziz Bukhori <br>
     Kelas  : XIIRPL1 <br>
     No Urut: 21 <br>
-    NIS    : 4271/1169.063 <br>
+    NIS    : 4356/1254-070 <br>
     User   : hilmibukhori5 <br>
  4 Nama    : Ni Made Distiara Landephy Aryashila <br>
     Kelas  : XIIRPL1 <br>
