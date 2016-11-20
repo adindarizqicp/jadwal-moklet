@@ -1,9 +1,12 @@
 # jadwal-moklet
 
-* Nama Aplikasi       : Jadwal Moklet v.1.0
-* Penjelasan Aplikasi : Aplikasi yang membantu siswa SMK TELKOM MALANG dalam hal jadwal pelajaran. Sehingga jika ada jadwal baru dari kurikulum yang diberikan dalam bentuk kode-kode guru, siswa tidak perlu repot menerjemahkan guru ataupun pelajaran. Jadi diawal aplikasi akan ada menu utama pilihan sebagai "siswa" atau "guru", saat memilih sebagai "siswa", maka akan muncul pilihan kelas lalu buat jadwal. Setelah membuat jadwal maka update jadwal dengan menu -> update (harus online). Ada juga fitur edit, dan about us. Untuk versi selanjutnya menu "guru" akan dikembangkan dan menambah fitur-fitur lain.
+### Nama App
+Nama Aplikasi       : Jadwal Moklet v.1.0
 
-* Screenshoot Aplikasi : 
+### Penjelasan
+Penjelasan Aplikasi : Aplikasi yang membantu siswa SMK TELKOM MALANG dalam hal jadwal pelajaran. Sehingga jika ada jadwal baru dari kurikulum yang diberikan dalam bentuk kode-kode guru, siswa tidak perlu repot menerjemahkan guru ataupun pelajaran. Jadi diawal aplikasi akan ada menu utama pilihan sebagai "siswa" atau "guru", saat memilih sebagai "siswa", maka akan muncul pilihan kelas lalu buat jadwal. Setelah membuat jadwal maka update jadwal dengan menu -> update (harus online). Ada juga fitur edit, dan about us. Untuk versi selanjutnya menu "guru" akan dikembangkan dan menambah fitur-fitur lain.
+
+### Screenshoot Aplikasi 
 * ![1](https://cloud.githubusercontent.com/assets/22070283/20460880/8001ae42-aea6-11e6-81c5-8840499a7927.jpg)
 * ![2](https://cloud.githubusercontent.com/assets/22070283/20460882/8008f512-aea6-11e6-9902-60d6d046987e.jpg)
 * ![3](https://cloud.githubusercontent.com/assets/22070283/20460883/800a789c-aea6-11e6-9182-5aed574b6c98.jpg)
@@ -28,12 +31,14 @@
 * ![22](https://cloud.githubusercontent.com/assets/22070283/20460933/1d7233cc-aea7-11e6-864a-ae36eab099e9.jpg)
 * ![23](https://cloud.githubusercontent.com/assets/22070283/20460934/1d7c0000-aea7-11e6-8414-9906f9d70a61.jpg)
 
+### Lampiran Video
+Video Aplikasi    : https://drive.google.com/open?id=0B5P8SfPyGXPrSzZ6SzJGN0gxUjg
 
-* Video Aplikasi    : https://drive.google.com/open?id=0B5P8SfPyGXPrSzZ6SzJGN0gxUjg
+### Lampiran File APK
+Link File Apk dari Aplikasi : https://drive.google.com/open?id=0B5P8SfPyGXPrSVRVbGVfQ1JMcFk
 
-* Link File Apk dari Aplikasi : https://drive.google.com/open?id=0B5P8SfPyGXPrSVRVbGVfQ1JMcFk
-
-* Identitas tiap anggota kelompok :
+### Identitas Kelompok
+Identitas tiap anggota kelompok :
  1. Nama   : Adinda Rizqi Caesaria Putri <br>
     Kelas  : XIIRPL1 <br>
     No Urut: 01 <br>
@@ -47,9 +52,9 @@
  3. Nama   : Hilmi Aziz Bukhori <br>
     Kelas  : XIIRPL1 <br>
     No Urut: 21 <br>
-    NIS    : 4356/1254-070 <br>
+    NIS    : 4356/1254.070 <br>
     User   : hilmibukhori5 <br>
- 4 Nama    : Ni Made Distiara Landephy Aryashila <br>
+ 4. Nama   : Ni Made Distiara Landephy Aryashila <br>
     Kelas  : XIIRPL1 <br>
     No Urut: 31 <br>
     NIS    : 4399/1297.070 <br>
