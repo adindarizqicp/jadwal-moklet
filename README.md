@@ -39,7 +39,6 @@ Link File Apk dari Aplikasi : https://drive.google.com/open?id=0B5P8SfPyGXPrSVRV
 
 ### Identitas Kelompok
 Identitas tiap anggota kelompok : <br> <br>
-Nama Sekolah : SMK Telkom Malang <br>
  1. Nama   : Adinda Rizqi Caesaria Putri <br>
     Kelas  : XIIRPL1 <br>
     No Urut: 01 <br>
@@ -61,3 +60,6 @@ Nama Sekolah : SMK Telkom Malang <br>
     NIS    : 4399/1297.070 <br>
     User   : aryashila <br>
     <br>
+
+### Nama Sekolah
+Nama Sekolah : SMK Telkom Malang
