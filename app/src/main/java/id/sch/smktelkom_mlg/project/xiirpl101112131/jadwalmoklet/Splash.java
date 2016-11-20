@@ -41,14 +41,15 @@ public class Splash extends Activity {
                 kelas = pref.getString("Kelas", "").toString();
                 jurang = pref.getString("Jurang", "").toString();
 
-                Toast.makeText(getApplicationContext(), kelas + " " + jurang, Toast.LENGTH_LONG).show();
 
                 iv.startAnimation(an2);
                 finish();
                 if (!(kelas.isEmpty() && jurang.isEmpty())) {
+                    Toast.makeText(getApplicationContext(), "Jadwal Kelas " + jurang, Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(i);
                 } else {
+                    Toast.makeText(getApplicationContext(), "Selamat Datang!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getBaseContext(), activity_jadwal.class);
                     startActivity(i);
                 }

@@ -51,6 +51,7 @@ public class JadwalDB extends AppCompatActivity {
     String[] myJ_G = new String[12];
     String notFound = "-";
     ProgressDialog progressDialog;
+    Thread t;
     private SQLController dbController;
 
     public JadwalDB(Context c) {
@@ -84,8 +85,8 @@ public class JadwalDB extends AppCompatActivity {
         progressDialog.setProgress(0);
         progressDialog.show();
 
-        Thread t = new Thread(new Runnable() {
-            int time = 1500;
+        t = new Thread(new Runnable() {
+            int time = 2000;
 
             @Override
             public void run() {
@@ -156,6 +157,7 @@ public class JadwalDB extends AppCompatActivity {
         });
         t.start();
     }
+
 
     public void hapusJadwalDB() {
         try {

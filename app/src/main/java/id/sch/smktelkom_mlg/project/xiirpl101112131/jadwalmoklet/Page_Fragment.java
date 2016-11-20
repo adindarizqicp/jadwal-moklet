@@ -76,7 +76,14 @@ public class Page_Fragment extends Fragment {
         jpAdapter = new JadwalPelajaran_adapter(jpList);
         recyclerView.setAdapter(jpAdapter);
 
+        fillData();
+    }
+
+    private void fillData() {
         String[] myKode, myMapel, myGuru;
+        String updateDB = "Update dulu..";
+        String updateDB_ket = "Tekan menu, lalu pilih 'Update' untuk memperbarui jadwal";
+
 
         if (mPage == 1) {
             myKode = jadwal.getArray("Senin000");
@@ -84,8 +91,12 @@ public class Page_Fragment extends Fragment {
             myGuru = jadwal.getArray("Senin002");
 
             jpList.clear();
-            for (int i = 0; i < myKode.length - 1; i++) {
-                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            if (myKode[0] == null) {
+                jpList.add(new JadwalPelajaran("", "", updateDB, updateDB_ket));
+            } else {
+                for (int i = 0; i < myKode.length - 1; i++) {
+                    jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+                }
             }
             jpAdapter.notifyDataSetChanged();
         } else if (mPage == 2) {
@@ -94,8 +105,12 @@ public class Page_Fragment extends Fragment {
             myGuru = jadwal.getArray("Selasa002");
 
             jpList.clear();
-            for (int i = 0; i < myKode.length - 1; i++) {
-                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            if (myKode[0] == null) {
+                jpList.add(new JadwalPelajaran("", "", updateDB, updateDB_ket));
+            } else {
+                for (int i = 0; i < myKode.length - 1; i++) {
+                    jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+                }
             }
             jpAdapter.notifyDataSetChanged();
         } else if (mPage == 3) {
@@ -104,8 +119,12 @@ public class Page_Fragment extends Fragment {
             myGuru = jadwal.getArray("Rabu002");
 
             jpList.clear();
-            for (int i = 0; i < myKode.length - 1; i++) {
-                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            if (myKode[0] == null) {
+                jpList.add(new JadwalPelajaran("", "", updateDB, updateDB_ket));
+            } else {
+                for (int i = 0; i < myKode.length - 1; i++) {
+                    jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+                }
             }
             jpAdapter.notifyDataSetChanged();
         } else if (mPage == 4) {
@@ -114,8 +133,12 @@ public class Page_Fragment extends Fragment {
             myGuru = jadwal.getArray("Kamis002");
 
             jpList.clear();
-            for (int i = 0; i < myKode.length - 1; i++) {
-                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            if (myKode[0] == null) {
+                jpList.add(new JadwalPelajaran("", "", updateDB, updateDB_ket));
+            } else {
+                for (int i = 0; i < myKode.length - 1; i++) {
+                    jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+                }
             }
             jpAdapter.notifyDataSetChanged();
         } else if (mPage == 5) {
@@ -124,8 +147,12 @@ public class Page_Fragment extends Fragment {
             myGuru = jadwal.getArray("Jumat002");
 
             jpList.clear();
-            for (int i = 0; i < myKode.length - 1; i++) {
-                jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+            if (myKode[0] == null) {
+                jpList.add(new JadwalPelajaran("", "", updateDB, updateDB_ket));
+            } else {
+                for (int i = 0; i < myKode.length - 1; i++) {
+                    jpList.add(new JadwalPelajaran("" + (i + 1), myKode[i], myMapel[i], myGuru[i]));
+                }
             }
             jpAdapter.notifyDataSetChanged();
         }
@@ -134,7 +161,7 @@ public class Page_Fragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        SharedPreferences pref = getContext().getSharedPreferences("Options", MODE_PRIVATE);
+        pref = getContext().getSharedPreferences("Options", MODE_PRIVATE);
         editor = pref.edit();
 
         if (item.getItemId() == R.id.action_keluar) {
@@ -154,7 +181,10 @@ public class Page_Fragment extends Fragment {
                             startActivity(intent);
 
                             editor.clear();
+                            editor.commit();
                             jadwal.hapusJadwalDB();
+
+                            getActivity().finish();
 
                             break;
                     }
@@ -201,6 +231,12 @@ public class Page_Fragment extends Fragment {
         if (item.getItemId() == R.id.action_edit) {
             Intent intent = new Intent(getActivity(), EditJadwal.class);
             intent.putExtra("intHari", mPage);
+            startActivity(intent);
+            getActivity().finish();
+            return true;
+        }
+        if (item.getItemId() == R.id.action_about) {
+            Intent intent = new Intent(getActivity(), AboutUs.class);
             startActivity(intent);
             return true;
         }

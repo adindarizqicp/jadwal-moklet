@@ -1,4 +1,4 @@
-package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet;
+package id.sch.smktelkom_mlg.project.xiirpl101112131.jadwalmoklet.model;
 
 /**
  * Created by Adinda Rizqi on 11/5/2016.

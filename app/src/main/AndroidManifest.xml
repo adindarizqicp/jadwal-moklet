@@ -18,15 +18,12 @@
         <activity android:name=".InputActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".EditJadwal" />
-
+        <activity android:name=".AboutUs" />
         <activity android:name=".activity_jadwal">
-            <!---->
-            <!--<activity android:name=".Splash">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".ListJadwal"></activity>-->
     </application>
 
 </manifest>

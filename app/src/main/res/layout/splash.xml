@@ -11,9 +11,9 @@
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="73dp"
-        android:src="@drawable/icon"
-        app:srcCompat="@drawable/icon" />
+        android:src="@drawable/icon2"
+        app:srcCompat="@drawable/icon2" />
 </RelativeLayout>

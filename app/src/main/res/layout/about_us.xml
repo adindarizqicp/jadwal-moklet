@@ -100,7 +100,7 @@
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center|top"
-            app:srcCompat="@drawable/icon" />
+            app:srcCompat="@drawable/icon2" />
 
 
     </RelativeLayout>

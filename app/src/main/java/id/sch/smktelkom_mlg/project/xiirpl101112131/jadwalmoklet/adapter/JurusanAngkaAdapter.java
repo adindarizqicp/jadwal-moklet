@@ -42,7 +42,7 @@ public class JurusanAngkaAdapter extends ArrayAdapter<String> {
                     .inflate(R.layout.row_spinner_kelas, parent, false);
 
         TextView tvTitle = (TextView) view.findViewById(R.id.textViewTitle);
-        tvTitle.setText(getItem(position).substring(0, 1));
+        tvTitle.setText(getItem(position).substring(0, getItem(position).indexOf(" "))); //INI
         TextView tvJurusanAngka = (TextView) view.findViewById(R.id.textViewJurusanAngka);
         tvJurusanAngka.setText(getItem(position));
         TextView tvKelas = (TextView) view.findViewById(R.id.textViewKelas);
