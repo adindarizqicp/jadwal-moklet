@@ -32,8 +32,8 @@ Penjelasan Aplikasi : Aplikasi yang membantu siswa SMK TELKOM MALANG dalam hal j
 * ![23](https://cloud.githubusercontent.com/assets/22070283/20460934/1d7c0000-aea7-11e6-8414-9906f9d70a61.jpg)
 
 ### Lampiran Video
-Video Aplikasi    : https://drive.google.com/open?id=0B5P8SfPyGXPrSzZ6SzJGN0gxUjg
-
+Video Aplikasi (Youtube.com)   : 
+[![Alt text](https://img.youtube.com/vi/O83_UX-KA_4/1.jpg)](https://www.youtube.com/watch?v=O83_UX-KA_4)
 ### Lampiran File APK
 Link File Apk dari Aplikasi : https://drive.google.com/open?id=0B5P8SfPyGXPrSVRVbGVfQ1JMcFk
 
